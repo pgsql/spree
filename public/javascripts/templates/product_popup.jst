@@ -1,0 +1,20 @@
+<div id="product_popup">
+    <a class="close"></a>
+
+    <div class="left">
+        <% if( product.images && product.images.length ){ %>
+        <div class="close-up-sticker"
+             style="background-image:url('/assets/products/<%= product.images[0].id %>/product/<%= product.images[0].attachment_file_name %>');">
+        </div>
+        <% } %>
+
+        <div class="close-up-description">
+            <strong><%= product.name %></strong><br/>
+            <%= product.description %>
+        </div>
+    </div>
+    <div class="right">
+        <a href="" class="add-now" data-product-id="<%= product.id %>"></a>
+        <a class="brand" href="<%=product.taxons[1].id%> ">View all <%=product.taxons[1].name%> Stickers</a>
+    </div>
+</div>

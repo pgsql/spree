@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StyckrParty</title>
+  <%= include_stylesheets :site %>
+  <%= include_javascripts :frameworks %>
+  <% if false #if Jammit.package_assets  %>
+      <%= include_javascripts :js_templates %>
+  <% else %>
+      <%= javascript_tag(Jammit.packager.pack_templates(:js_templates)) %>
+  <% end %>
+  <%= include_javascripts :site %>
+  <%= javascript_include_tag "application.js" %>
+  <%= yield :css %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<% if params[:controller] == "products" %>
+    <script type="text/javascript">
+        arree = new Array();
+        <% if params[:sort_by].blank? %>
+        <% ps = Product.all %>
+        <% unless ps.blank? %>
+        <% ps.each do |pro| %>
+
+        FB.api(
+        {
+            method: 'fql.query',
+            query: 'select  like_count, total_count, share_count, click_count from link_stat where url="<%= request.protocol %><%= request.host_with_port %>/products/<%= pro.permalink %>"'
+        },
+                function(response) {
+                    arree.push(response[0].like_count + "-<%= pro.id %>");
+                    <% if ps.last.id == pro.id %>
+                    $.ajax({
+                        url: '/products/fetch_array?arr=' + arree, type: 'get', dataType: 'html',
+                        processData: false,
+                        success: function(data) {
+                        }
+                    });
+                    <% end %>
+                }
+                );
+
+
+        <% end %>
+        <% end %>
+        <% end %>
+
+    </script>
+<% end %>
+<%= render :partial=>'layouts/header' %>
+<div id="container">
+  <div id="page-options">
+    <ul>
+      <li><%= link_to 'Most Recent', '/products' %></li>
+      <li><%= link_to 'Popular', '/products?sort_by=popular' %></li>
+      <li><%= link_to 'Trending', '/products?sort_by=trending' %></li>
+    </ul>
+  </div>
+  <div id="main">
+    <div id="bread-crumbs">
+      <%= link_to 'Home', root_path %>
+      >
+      <%= link_to 'Store', 'Products#index', :class => 'active' %>
+    </div>
+    <div id="item-container">
+      <%= yield :item_container %>
+    </div>
+    <%= yield %>
+  </div>
+</div>
+<%= yield :footer %>
+</body>
+
+
+<%= yield :js %>
+
+<div id="shiplist-send-container" style="display:none;">
+  <a class="close" id="close_div"></a>
+
+  <form id="form_diver">
+    <div class="left class_error_setter" style="padding:20px;width:385px !important;">
+      <label for="recipient">Recipient</label>
+      <input name="recipient" id="recipient" class="col-1" style="width:300px;"/> <br/><br/>
+      <label for="recipient">Message</label>
+      <textarea name="shiplist_message" id="shiplist_message" class="col-1" style="width:300px;"></textarea>
+
+      <br/>
+      <br/><input type="button" value="Send Now" id="form_submit_email"/>
+
+    </div>
+
+  </form>
+</div>
+<%= javascript_include_tag "jquery.validate" %>
+<script type="text/javascript">
+    $("#shiplist-send_mail").click(function() {
+        $("#dim").toggle();
+        $("#shiplist-send-container").show();
+    });
+    $("#close_div").click(function() {
+        $("#dim").hide();
+        $("#shiplist-send-container").hide();
+    });
+    $("#form_submit_email").click(function() {
+        if (!$("#form_diver").valid())
+            return false;
+        else {
+            $.ajax({
+                url: "/ship_list?recipient=" + $("#recipient").val() + "&message=" + $("#shiplist_message").val(), type: 'post', dataType: 'html',
+                processData: false,
+                success: function(data) {
+                    $("#dim").hide();
+                    $("#shiplist-send-container").hide();
+                    $("#recipient").val("");
+                    $("#shiplist_message").val("");
+                }
+            });
+        }
+    });
+    $(document).ready(function() {
+        $(".f-buttons").children()
+        $("#form_diver").validate({
+            rules:{
+                "recipient":
+                {
+                    required: true,
+                    email: true
+                }
+            }
+        });
+    });
+    function get_product_taxon(product_link) {
+        $.ajax({
+            url: "/filter_by_taxon_all?product_link=" + product_link, type: 'post', dataType: 'html',
+            processData: false,
+            success: function(data) {
+                $("#item-container").html(data);
+            }
+        });
+        return false;
+
+    }
+</script>
+</html>

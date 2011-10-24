@@ -1,0 +1,36 @@
+<div
+id="product_icon_<%= product.id %>"
+class="product_icon itemSpacer"
+data-product-id="<%= product.id %>" data-product-permalink="<%= product.permalink %>">
+
+  <div
+  class="sticker item hide"
+  <% if (product.images && product.images.length) { %>
+  style="background-image:url('/assets/products/<%= product.images[0].id %>/small/<%= product.images[0].attachment_file_name %>');"
+  <% } %>>
+
+    <div class="data-container" style="margin-top:20px;">
+      <div class="description">
+        <div class="background"></div>
+        <div class="text">
+            <div>
+              <a href="#" class="add-to-cart" style="font-size:10px;">
+                Add to cart
+              </a>
+            </div>
+            <div>
+              <a href="<%= '/products/' + product.permalink %>" class="view-sticker-details_new" style="font-size:10px;">
+                View this sticker
+              </a>
+            </div>
+
+            <div>
+              <a href="javascript:void(0)" onclick="get_product_taxon('<%= product.permalink %>');" style="font-size:10px;">
+                View all brand Stickers
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div id="header-bg">
+  <div id="header">
+    <div id="logo"></div>
+    <div class="row-1">
+      <ul class="col-1">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Tour', '#' %></li>
+        <li><%= link_to 'Help', '#' %></li>
+        <li><%= link_to 'About', '#' %></li>
+      </ul>
+      <% if user_signed_in? %>
+          <ul class="col-2">
+            <li>&nbsp;</li>
+            <!--<li><%#= link_to 'My Account', edit_user_registration_path %></li>-->
+            <li><%= link_to 'My Account', "/account" %></li>
+          </ul>
+      <% end %>
+    </div>
+
+    <div class="row-2">
+      <input type="text" id="search" class="col-1 search" value="Enter your favorite brand ..."/>
+      <% if user_signed_in? %>
+          <%= link_to 'Log Out', destroy_user_session_path, :class => 'col-2 button1 isGreen' %>
+      <% else %>
+          <%= link_to 'Log In', new_user_session_path, :class => 'col-2 button1 isGreen' %>
+      <% end %>
+    </div>
+  </div>
+</div>

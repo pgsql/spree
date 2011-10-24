@@ -1,0 +1,25 @@
+package_assets:         off  # (on, off, always)
+embed_assets:           off  # (on, off, datauri)
+compress_assets:        off  # (on, off)
+gzip_assets:            off  # (on, off)
+javascript_compressor:  off  # closure
+template_function:     _.template
+#compressor_options:
+#  compilation_level: "ADVANCED_OPTIMIZATIONS"
+javascripts:
+  frameworks:
+    - public/javascripts/jquery.min.js
+    - public/javascripts/jquery-ui.js
+    - public/javascripts/backbone/underscore.js
+    - public/javascripts/backbone/backbone.js
+    - public/javacsripts/rails.js
+  site:
+    - public/javascripts/site/SP-extras.js
+    - public/javascripts/site/SP.js
+    - public/javascripts/cufon/cufon-1.09i.js
+    - public/javascripts/cufon/fonts.js
+  js_templates:
+    - public/javascripts/templates/*.jst
+stylesheets:
+  site:
+    - public/stylesheets/site/site.css

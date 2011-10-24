@@ -1,0 +1,12 @@
+
+
+<ul id="nav">
+
+	<% $.each( categories, function( index, element ){ %>
+		<li>
+			<a href="<%= element.id %>">
+				<%= element.name %>
+			</a>
+		</li>
+	<% } ); %>
+</ul>

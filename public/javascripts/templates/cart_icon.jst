@@ -1,0 +1,6 @@
+<div id="cart_icon_<%= product.id %>" class="cart_icon" data-product-id="<%= product.id %>" title=<%= product.master.id %> <% 
+	if( product.images && product.images.length ){ 
+		%>style="background-image:url('/assets/products/<%= product.images[0].id %>/small/<%= product.images[0].attachment_file_name %>');display:block;"<%
+	} %>>
+	<a class="remove"></a>
+</div>

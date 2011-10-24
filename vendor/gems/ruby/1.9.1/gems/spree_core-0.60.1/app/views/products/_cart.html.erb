@@ -1,0 +1,59 @@
+<div id="tooltip">
+  No credit card? No prob. We'll send your shipping list<br/>
+  to your mom, dad or best friend with a credit card and they can complete<br/>
+  your order so we can ship you your stash
+</div>
+<div id="footer-bg">
+  <div id="footer">
+    <div class="flash notice">
+      <%= flash[:notice] %>
+      <%= flash[:error] %>
+    </div>
+    <ul class="f-buttons">
+      <li><%= link_to 'Shopping cart', cart_path, :class => 't2' %></li>
+
+      <% if current_user %>
+          <% if current_order.blank? %>
+              <li><%= link_to 'Send Shiplist', "javascript:", :class => 't1', :onclick => "alert('Your cart is empty add something in cart.');" %></li>
+          <% else %>
+              <li><%= link_to 'Send Shiplist', "javascript:", :class => 't1', :id=>"shiplist-send_mail" %></li>
+          <% end %>
+      <% else %>
+          <li><%= link_to 'Send Shiplist', "javascript:", :class => 't1', :onclick => "alert('You need to login before continue.');" %></li>
+      <% end %>
+      <li><%= link_to 'Check Out', cart_path, :class => 't1' %></li>
+    </ul>
+    <% if current_order.blank? %>
+        <div class="empty-cart">
+          Your cart is empty.
+          Load it up so that you can have the coolest stash on the block.
+          Btw..to load your cart, just click from above. It's uber simple.
+        </div>
+        <div class="cart" style="display: block;">
+        </div>
+    <% else %>
+        <div class="empty-cart" style="display:none;">
+          Your cart is empty.
+          Load it up so that you can have the coolest stash on the block.
+          Btw..to load your cart, just click from above. It's uber simple.
+        </div>
+        <div class="cart" style="display: block;">
+          <%= javascript_tag do %>
+              <% current_order.line_items.each do |item| %>
+                  <% 1.upto item.quantity do %>
+                      $(".cart").append(JST.cart_icon({product:<%= raw item.product.to_json(:only => [:id, :permalink, :name, :liked], :include=>{:master=> {:only => [:id]}, :images => {:only => [:id, :attachment_file_name]}}) %>
+                      }));
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<div id="dim"></div>
+<div id="nav-ini"></div>
+
+
+
+
+

@@ -1,0 +1,14 @@
+
+<div id="subnav-container">
+	<ul id="subnav">
+                <li><a href="<%=cat_id%>">View All <%=cat_name%></a></li>
+		<% $.each( sub_categories, function( index, element ){ %>
+			<li>
+				<a href="<%= element.id %>">
+					<div></div>
+					<%= element.name %>
+				</a>
+			</li>
+		<% } ); %>
+	</ul>
+</div>

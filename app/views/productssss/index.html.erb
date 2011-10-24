@@ -1,0 +1,21 @@
+<%= javascript_include_tag "products/index" %>
+<%= javascript_tag do %>
+    $(document).ready(function(){
+    Spree.show_products(<%= raw @products.to_json(:only => [:id, :permalink, :name, :liked],
+                                                  :methods => :brand,
+                                                  :include => {
+                                                          :images => {:only => [:id, :attachment_file_name]},
+                                                          :master => {:only => [:id]},
+                                                          :product_groups => {:only => [:id, :name]}
+                                                  }) %>);
+    Spree.left_nav.load_categories(<%= raw Taxon.where(
+                                                   :parent_id => Taxon.first.id
+                                           ).to_json(
+                                                   :only => [:id, :name, :permalink], :include => :children
+                                           ) %>);
+    Spree.left_nav.init();
+    });
+<% end %>
+<%= content_for :footer do %>
+    <%= render 'cart' %>
+<% end %>

@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+
+.signbox { width: 700px; height: 375px; padding-top: 35px; background: url(../images/singn_bg.png); position: absolute; top: 25px; }
+	.signbox .left { width: 300px; padding: 0px 17px 0px 30px; line-height: 18px; }
+		.signbox .left h1 { font-size: 32px; }
+		.signbox .left h1 span { font-size: 12px; color: #ff9c00; line-height: 24px; }
+		.signbox .left p { padding-top: 12px; }
+		.signbox .left p b { color: #999999; }
+	.signbox .right { width: 300px; padding: 0px 33px 0px 20px; }
+		.signbox .right h3 { font-size: 16px; }
+		.signbox .right .share { padding: 20px 0px; border-bottom: #666 dashed 1px; }
+		.signbox .right h4 { font-size: 14px; padding: 12px 0px 5px 0px; }
+		.signbox .right li { padding-top: 5px; }
+		.signbox .right li b { line-height: 24px; }
+		.signbox .right .inp_bg { width: 280px; height: 32px; display: inline-block; background: url(../images/input_bg.png); }
+		.signbox .right .inp_bg input { width: 250px; margin: 7px 0px 0px 12px; border: 0px; font-size: 14px; }
+		.signbox .right .but { padding: 12px 20px 0px 0px; text-align: right; }
+		
+.requestbox { width: 672px; height: 191px; padding: 20px 0px 0px 28px; background: url(../images/request_bg.png); position: absolute; left: 160px; top: 100px; }
+	.requestbox h1 { font-size: 32px; }
+		.requestbox h1 span { font-size: 12px; color: #ff9c00; line-height: 24px; }
+	.requestbox .forms { padding-top: 12px; overflow: hidden; zoom: 1; }
+		.requestbox .forms span { width: 408px; height: 48px; float: left; background: url(../images/input2_bg.gif); margin-right: 15px; }
+			.requestbox .forms span input { width: 380px; font-size: 16px; margin: 14px 0px 0px 10px; border: 0px; }
+		.requestbox .forms p { padding-bottom: 8px; overflow: hidden; zoom: 1; font-weight: bold; }

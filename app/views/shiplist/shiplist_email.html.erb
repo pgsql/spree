@@ -1,0 +1,13 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<html>
+<body>
+<%= @message %>
+<br/>
+<%#=@ids%>
+Follow this link to proceed the checkout of the
+order <%= link_to "Click Here", "#{@protocol}#{@host}/products/load_ship_list?id=#{@ids}" %><%#=link_to "Click Here",:controller=>"products",:action=>"ship_list",:id=>@ids %>
+</body>
+</html>
