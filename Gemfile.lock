@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/dancinglightning/spree-html-invoice.git
-  revision: cb6b34cd98c43b6c66fc4ad096dd7843e4da3eaa
-  specs:
-    spree_html_invoice (0.0.1)
-      spree_core (>= 0.30.0)
-
-GIT
   remote: git://raw.github.com/spree/spree_wishlist.git
   revision: 5172de86dd46905e6d60288584b567155055675e
   ref: 5172de86dd46905e6d60288584b567155055675e
@@ -154,6 +147,13 @@ GEM
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
     polyglot (0.3.2)
+    prawn (0.8.4)
+      prawn-core (< 0.9, >= 0.8.4)
+      prawn-layout (< 0.9, >= 0.8.4)
+      prawn-security (< 0.9, >= 0.8.4)
+    prawn-core (0.8.4)
+    prawn-layout (0.8.4)
+    prawn-security (0.8.4)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -258,10 +258,10 @@ DEPENDENCIES
   jquery-rails
   mysql
   omniauth (= 0.1.6)
+  prawn (= 0.8.4)
   rails (= 3.0.9)
   rake (= 0.8.7)
   spree
-  spree_html_invoice!
   spree_wishlist!
   sqlite3
   tlsmail

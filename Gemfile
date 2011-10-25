@@ -24,7 +24,8 @@ gem 'mysql'
 gem 'rake', '0.8.7'
 gem 'omniauth', '0.1.6'
 gem 'tlsmail'
-gem 'spree_html_invoice' , :git => 'git://github.com/dancinglightning/spree-html-invoice.git'
+gem "prawn", "0.8.4"
+
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'

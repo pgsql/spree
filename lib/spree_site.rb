@@ -6,7 +6,7 @@ module SpreeSite
       end
     end
 
-    def load_tasks
+    def load_tasks(sample=nil)
     end
 
     config.to_prepare &method(:activate).to_proc
